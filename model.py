@@ -47,7 +47,7 @@ def get_recommendations(title):
 st.title('Movie Recommender')
 
 # User input for movie title
-user_input = st.text_input("Enter a movie title:", 'To Kill a Mockingbird')
+user_input = st.text_input("Enter a movie title:", '')
 
 if st.button('Get Recommendations'):
     recommendations = get_recommendations(user_input)
