@@ -52,7 +52,7 @@ if st.button('Get Recommendations'):
     recommended_movies = get_recommendations_with_desc(user_input)
     
     # Display input movie if found
-    input_movie = moviesA[moviesA['title'].str.lower() == user_input.lower()][['title', 'desc']]
+    input_movie = match
     if not input_movie.empty:
         st.write("Input Movie:")
         st.write(f"Title: {input_movie['title'].values[0]}")
