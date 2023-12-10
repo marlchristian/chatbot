@@ -5,11 +5,7 @@
 
 Group Members:
 
-
-Delos Reyes, Erskine Jerrell
-
-Gepulle, Kevin
-
-Pascual, Marl Christian
-
+Delos Reyes, Erskine Jerrell\n
+Gepulle, Kevin\n
+Pascual, Marl Christian\n
 Ramos, John Gio
