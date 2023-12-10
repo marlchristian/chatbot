@@ -38,7 +38,7 @@ def get_recommendations(title):
     sim_scores = sim_scores[1:11]
     movie_indices = [i[0] for i in sim_scores]
 
-    return moviesB.iloc[movie_indices]['title']
+    return moviesB.iloc[movie_indices]['title', 'desc']
 
 # Streamlit app
 st.title('Movie Recommender: Filipino to Western')
