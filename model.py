@@ -1,5 +1,4 @@
 import time
-import asyncio
 import streamlit as st
 import streamlit as st
 import pandas as pd
@@ -53,4 +52,3 @@ if st.button('Get Recommendations'):
     recommendations = get_recommendations(user_input)
     st.write("Recommended Movies:")
     st.write(recommendations)
-async_loop.run_forever()
