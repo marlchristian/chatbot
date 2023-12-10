@@ -40,7 +40,7 @@ def get_recommendations_with_desc(title):
     movie_indices = [i[0] for i in sim_scores]
 
     recommended_movies = moviesB.iloc[movie_indices][['title', 'desc']]
-    return recommended_movies
+    return recommended_movies, match
 
 # Streamlit app
 st.title('Movie Recommender: Foreign Movies to Filipino Movies')
@@ -49,10 +49,10 @@ st.title('Movie Recommender: Foreign Movies to Filipino Movies')
 user_input = st.text_input("Enter a movie title:", '')
 
 if st.button('Get Recommendations'):
-    recommended_movies = get_recommendations_with_desc(user_input)
+    recommended_movies, matched_movie = get_recommendations_with_desc(user_input)
     
     # Display input movie if found
-    input_movie = match
+    input_movie = moviesA[moviesA['title'].str.lower() == matched_movie.lower()][['title', 'desc']]
     if not input_movie.empty:
         st.write("Input Movie:")
         st.write(f"Title: {input_movie['title'].values[0]}")
