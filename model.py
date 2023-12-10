@@ -25,12 +25,13 @@ tfidf_matrix = tfidf_vectorizer.fit_transform(moviesB['desc'])
 cosine_sim = linear_kernel(tfidf_matrix, tfidf_matrix)
 
 moviesA = moviesA.reset_index()
-titles = moviesA['title']
-indices = pd.Series(moviesA.index, index=moviesA['title'])
+titles = moviesA['title'].str.lower()  # Convert titles to lowercase
+indices = pd.Series(moviesA.index, index=titles)
 
 # Function to get movie recommendations with descriptions
 def get_recommendations_with_desc(title):
-    match, score = process.extractOne(title, indices.keys())
+    title_lower = title.lower()  # Convert input title to lowercase
+    match, score = process.extractOne(title_lower, indices.keys())
     idx_A = indices[match]
 
     sim_scores = list(enumerate(cosine_sim[:, idx_A]))
@@ -51,7 +52,7 @@ if st.button('Get Recommendations'):
     recommended_movies = get_recommendations_with_desc(user_input)
     
     # Display input movie if found
-    input_movie = moviesA[moviesA['title'] == user_input][['title', 'desc']]
+    input_movie = moviesA[moviesA['title'].str.lower() == user_input.lower()][['title', 'desc']]
     if not input_movie.empty:
         st.write("Input Movie:")
         st.write(f"Title: {input_movie['title'].values[0]}")
