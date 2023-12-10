@@ -42,7 +42,7 @@ def get_recommendations(title):
         return "Movie not found in the database."
 
 # Streamlit app
-st.title('Movie Recommender')
+st.title('Movie Recommender: Western to Filipino')
 
 # User input for movie title
 user_input = st.text_input("Enter a movie title:", '')
