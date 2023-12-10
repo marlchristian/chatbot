@@ -1,10 +1,7 @@
-import time
-import streamlit as st
 import streamlit as st
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel
-from fuzzywuzzy import process
 import warnings
 
 # Suppressing warnings for cleaner output
@@ -32,15 +29,17 @@ indices = pd.Series(moviesA.index, index=moviesA['title'])
 
 # Function to get movie recommendations
 def get_recommendations(title):
-    match, score = process.extractOne(title, indices.keys())
-    idx_A = indices[match]
+    if title in indices:
+        idx_A = indices[title]
 
-    sim_scores = list(enumerate(cosine_sim[:, idx_A]))
-    sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
-    sim_scores = sim_scores[1:11]
-    movie_indices = [i[0] for i in sim_scores]
+        sim_scores = list(enumerate(cosine_sim[:, idx_A]))
+        sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
+        sim_scores = sim_scores[1:11]
+        movie_indices = [i[0] for i in sim_scores]
 
-    return moviesB.iloc[movie_indices]['title']
+        return moviesB.iloc[movie_indices]['title']
+    else:
+        return "Movie not found in the database."
 
 # Streamlit app
 st.title('Movie Recommender')
