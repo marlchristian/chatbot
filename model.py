@@ -43,7 +43,7 @@ def get_recommendations_with_desc(title):
     return recommended_movies
 
 # Streamlit app
-st.title('Movie Recommender: Western to Filipino')
+st.title('Movie Recommender: Foreign Movies to Filipino Movies')
 
 # User input for movie title
 user_input = st.text_input("Enter a movie title:", '')
