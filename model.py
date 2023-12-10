@@ -1,3 +1,5 @@
+pip install fuzzywuzzy
+
 import time
 import asyncio
 import streamlit as st
