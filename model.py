@@ -1,25 +1,28 @@
-pip install fuzzywuzzy
-
 import time
 import asyncio
+import streamlit as st
 import streamlit as st
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel
 from fuzzywuzzy import process
-
 import warnings
+
+# Suppressing warnings for cleaner output
 warnings.simplefilter('ignore')
 
+# Load data
 moviesA = pd.read_csv('https://raw.githubusercontent.com/Koersken/recommender/main/imdb_top_1000.csv')
 moviesB = pd.read_csv('https://raw.githubusercontent.com/Koersken/recommender/main/Filipino_Movies_Letterbox_Koersken.csv')
 
+# Data preprocessing
 moviesA = moviesA.rename(columns={'Series_Title': 'title', 'Overview': 'desc'})
 moviesA['desc'] = moviesA['desc'] + moviesA['Genre']
 moviesA = moviesA.drop(columns=['Poster_Link', 'Released_Year', 'Certificate', 'Runtime', 'Genre', 'IMDB_Rating', 'Meta_score', 'Director', 'Star1', 'Star2', 'Star3', 'Star4', 'No_of_Votes', 'Gross'])
 
 moviesB = moviesB.drop_duplicates(subset='title')
 
+# TF-IDF vectorization
 tfidf_vectorizer = TfidfVectorizer(analyzer='word', ngram_range=(1, 2), min_df=0.0, stop_words='english')
 tfidf_matrix = tfidf_vectorizer.fit_transform(moviesB['desc'])
 cosine_sim = linear_kernel(tfidf_matrix, tfidf_matrix)
@@ -28,9 +31,9 @@ moviesA = moviesA.reset_index()
 titles = moviesA['title']
 indices = pd.Series(moviesA.index, index=moviesA['title'])
 
+# Function to get movie recommendations
 def get_recommendations(title):
     match, score = process.extractOne(title, indices.keys())
-    print(match,score)
     idx_A = indices[match]
 
     sim_scores = list(enumerate(cosine_sim[:, idx_A]))
@@ -40,4 +43,14 @@ def get_recommendations(title):
 
     return moviesB.iloc[movie_indices]['title']
 
-print(get_recommendations('To Kill a Mockingbird'))
+# Streamlit app
+st.title('Movie Recommender')
+
+# User input for movie title
+user_input = st.text_input("Enter a movie title:", 'To Kill a Mockingbird')
+
+if st.button('Get Recommendations'):
+    recommendations = get_recommendations(user_input)
+    st.write("Recommended Movies:")
+    st.write(recommendations)
+async_loop.run_forever()
