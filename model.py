@@ -41,7 +41,7 @@ def get_recommendations(title):
     return moviesB.iloc[movie_indices]['title']
 
 # Streamlit app
-st.title('Movie Recommender')
+st.title('Movie Recommender: Filipino to Western')
 
 # User input for movie title
 user_input = st.text_input("Enter a movie title:", '')
