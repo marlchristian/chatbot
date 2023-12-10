@@ -1,6 +1,9 @@
-# Welcome to Streamlit!
+# Movie Recommendation: Western to Filipino
 
-Edit `/streamlit_app.py` to customize this app to your heart's desire. :heart:
 
-If you have any questions, checkout our [documentation](https://docs.streamlit.io) and [community
-forums](https://discuss.streamlit.io).
+Group Members:
+
+Delos Reyes, Erskine Jerrell
+Gepulle, Kevin
+Pascual, Marl Christian
+Ramos, John Gio
