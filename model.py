@@ -49,6 +49,12 @@ user_input = st.text_input("Enter a movie title:", '')
 
 if st.button('Get Recommendations'):
     recommended_movies = get_recommendations_with_desc(user_input)
+    st.write("Input Movie:")
+    input_movie = moviesA[moviesA['title'] == user_input][['title', 'desc']]
+    st.write(f"Title: {input_movie['title'].values[0]}")
+    st.write(f"Description: {input_movie['desc'].values[0]}")
+    st.write("-" * 50)
+    
     st.write("Recommended Movies with Descriptions:")
     for index, row in recommended_movies.iterrows():
         st.write(f"Title: {row['title']}")
