@@ -1,4 +1,4 @@
-# Movie Recommender: Foreign Movies to Filipino Movies
+# Sinekat: A Movie Recommender
 
 
 
