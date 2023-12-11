@@ -9,8 +9,8 @@ import warnings
 warnings.simplefilter('ignore')
 
 # Load data
-moviesA = pd.read_csv('https://raw.githubusercontent.com/Koersken/recommender/main/imdb_top_1000.csv')
-moviesB = pd.read_csv('https://raw.githubusercontent.com/Koersken/recommender/main/Filipino_Movies_Letterbox_Koersken.csv')
+moviesA = pd.read_csv('https://raw.githubusercontent.com/marlchristian/chatbot/master/data/imdb_top_1000.csv')
+moviesB = pd.read_csv('https://raw.githubusercontent.com/marlchristian/chatbot/master/data/Filipino_Movies_Letterbox_Koersken.csv')
 
 # Data preprocessing
 moviesA = moviesA.rename(columns={'Series_Title': 'title', 'Overview': 'desc'})
