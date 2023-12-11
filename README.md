@@ -1,4 +1,4 @@
-# Sinekat: A Filipino Movie Recommender Based On Foreign Movie
+# Sinekat: Filipino Movie Recommender Based On Foreign Movie
 
 
 
